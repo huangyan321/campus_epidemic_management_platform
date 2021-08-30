@@ -3,7 +3,7 @@ const mysql = require("mysql")
 const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
-  password: 'root',
+  password: '175947',
   port: '3306',
   database: 'my_store'
 })
@@ -16,6 +16,7 @@ module.exports = class Model {
           console.error(err);
           connection.release();
         } else {
+          console.log("数据库连接成功");
           connection.query(sql,params,(err,results) => {
             if(err) {
               console.error(err);

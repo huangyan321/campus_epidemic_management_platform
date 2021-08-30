@@ -63,11 +63,11 @@ const actions = {
         }
         const {
           username,
-          role_id
-        } = data
-
+          head
+        } = data.result
+        console.log(head);
         commit('SET_NAME', username)
-        commit('SET_AVATAR', role_id)
+        commit('SET_AVATAR', head)
         resolve(data)
       }).catch(error => {
         reject(error)

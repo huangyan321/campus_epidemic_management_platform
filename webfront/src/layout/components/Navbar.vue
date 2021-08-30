@@ -7,7 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img src="../../assets/login/cat.jpg" class="user-avatar">
+          <img :src="avatar"  class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
@@ -41,11 +42,23 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  mounted() {
+    
+  },
+  data() {
+    return {
+    }
+  },
   computed: {
+    //对象形式
     ...mapGetters([
       'sidebar',
       'avatar'
     ])
+    //数组形式
+    // ...mapGetters({
+    //   avatar: "avatar"
+    // })
   },
   methods: {
     toggleSideBar() {

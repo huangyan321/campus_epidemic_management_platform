@@ -10,6 +10,7 @@ import store from './store'
 import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
+Vue.prototype.$store = store
 // 在页面刷新时将store中的数据保存到sessionStorage中
 window.addEventListener("beforeunload",() => {
   const userInfo = {
@@ -24,6 +25,7 @@ if (userInfo) {
   const user = JSON.parse(userInfo);
   store.commit('user/SET_TOKEN', user.token);
   store.commit('user/SET_NAME', user.name);
+  store.commit('user/SET_AVATAR', user.avatar);
 }
 Vue.config.productionTip = false;
 

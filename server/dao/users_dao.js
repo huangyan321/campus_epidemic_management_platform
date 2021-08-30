@@ -29,7 +29,7 @@ module.exports = class User_dao extends require("../model/users_mod") {
           status: 200
         }
       })
-    } else res.status(500).send("用户名或密码错误")
+    } else res.sendStatus(500).send("用户名或密码错误")
   }
   static async getUserDataByToken(req,res) {
     let result = await jwt.verifysync(req.headers.authorization,global.globalkey);
