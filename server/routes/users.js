@@ -11,4 +11,7 @@ router.post('/login',function(req,res,next) {
 router.get('/getUserDataByToken',function(req,res,next) {
   user.getUserDataByToken(req,res)
 })
+router.get('/getUsersByTypePage',function(req,res,next) {
+  user.getUsersByTypePage(req,res)
+})
 module.exports = router;

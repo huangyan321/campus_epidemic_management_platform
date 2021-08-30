@@ -34,7 +34,7 @@ module.exports = class Model {
   static formatParams() {
     let arr = [];
     for(let i=0;i<arguments.length;i++) {
-      arr.push(this.arguments[i])
+      arr.push(arguments[i])
     }
     return arr
   }

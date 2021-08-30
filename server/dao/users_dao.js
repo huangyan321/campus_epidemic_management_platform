@@ -38,4 +38,14 @@ module.exports = class User_dao extends require("../model/users_mod") {
       status: 200
     }})
   }
+  static async getUsersByTypePage(req, res) {
+    let query = req.query;
+    let data = await this.getUsersByTypePageMod(query.type,query.pageSize,query.currPage)
+    let total = await this.getUsersByTypePageTotal(query.type)
+    console.log(data);
+    res.send({
+      data,
+      total
+    })
+  }
 }
