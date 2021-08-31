@@ -1,5 +1,4 @@
 const jwt = require("../utils/jwtUtils")
-global.globalkey = "123456"
 
 module.exports = class User_dao extends require("../model/users_mod") {
   /**
@@ -21,7 +20,7 @@ module.exports = class User_dao extends require("../model/users_mod") {
         modifytime: loginData[0].modifytimem,
         classes: loginData[0].classes,
         type: loginData[0].type
-      }, global.globalkey, 60000)
+      }, global.globalkey, '1day')
       res.send({
         data: {
           token,
@@ -39,6 +38,7 @@ module.exports = class User_dao extends require("../model/users_mod") {
    */
   static async getUserDataByToken(req, res) {
     let result = await jwt.verifysync(req.headers.authorization, global.globalkey);
+    console.log(result);
     res.send({
       data: {
         result
