@@ -1,3 +1,6 @@
+const {
+  getDate19
+} = require("../utils/tool")
 module.exports = class Users_mod extends require('./model') {
   //用户模型
   /**
@@ -85,7 +88,9 @@ module.exports = class Users_mod extends require('./model') {
   }
   static upDataUserInfoMod(id, username, sex, address, type) {
     return new Promise((resolve, reject) => {
-      let sql = "update usertable set username='" + username + "',sex='" + sex + "',address='" + address + "',type=" + type + " where id=" + id
+      let modifytime = getDate19();
+      let sql = "update usertable set username='" + username + "',sex='" + sex + "',address='" + address + "',type=" + type + ",modifytime='" + modifytime +
+        "' where id=" + id
       this.query(sql).then(res => {
         resolve("修改成功")
       }).catch(err => {
