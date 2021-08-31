@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+global.globalkey = "123456" //全局key
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var studentRouter = require('./routes/student');
 var app = express();
 //跨域配置
 app.all("*", function (req, res, next) {
@@ -37,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/student', studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
