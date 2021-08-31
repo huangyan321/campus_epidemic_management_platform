@@ -6,11 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var adminRouter = require('./routes/admin');
 var app = express();
 //跨域配置
 app.all("*", function (req, res, next) {
   //设置允许跨域的域名，*代表允许任意域名跨域
+  
   res.header("Access-Control-Allow-Origin", "*");
   //允许的header类型
   res.header("Access-Control-Allow-Headers", "Content-Type,Access-Token,Appid,Secret,Authorization");
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

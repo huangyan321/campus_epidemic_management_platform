@@ -40,9 +40,8 @@ module.exports = class User_dao extends require("../model/users_mod") {
   }
   static async getUsersByTypePage(req, res) {
     let query = req.query;
-    let data = await this.getUsersByTypePageMod(query.type,query.pageSize,query.currPage)
+    let data = await this.getUsersByTypePageMod(query.type,query.currPage,query.pageSize)
     let total = await this.getUsersByTypePageTotal(query.type)
-    console.log(data);
     res.send({data: {data,total},meta: {
       msg: "查询成功",
       status: 200

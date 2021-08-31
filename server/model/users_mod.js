@@ -12,14 +12,20 @@ module.exports = class Users_mod extends require('./model') {
       })
     })
   }
-  static getUsersByTypePageMod(type, pageSize, currPage) {
+  static getUsersByTypePageMod(type, currPage, pageSize) {
     type = Number(type);
     pageSize = Number(pageSize);
     currPage = Number(currPage);
-    currPage = Number(currPage * pageSize)
+    currPage = Number((currPage-1) * pageSize)
+    console.log(currPage);
     return new Promise((resolve, reject) => {
-      let sql = "select * from usertable where type= " + type + " LIMIT ?,?"
-      let params = this.formatParams(currPage, pageSize);
+      let sql;
+      if (type) {
+        sql = "select * from usertable where type= " + type + " LIMIT ?,?"
+      } else {
+        sql = "select * from usertable LIMIT ?, ?"
+      }
+      let params = this.formatParams(currPage , pageSize);
       this.query(sql, params).then(res => {
         resolve(res)
       }).catch(err => {
@@ -30,7 +36,12 @@ module.exports = class Users_mod extends require('./model') {
   static getUsersByTypePageTotal(type) {
     type = Number(type);
     return new Promise((resolve, reject) => {
-      let sql = "select * from usertable where type= " + type
+      let sql;
+      if (type) {
+        sql = "select * from usertable where type= " + type
+      } else {
+        sql = "select * from usertable"
+      }
       this.query(sql).then(res => {
         resolve(res.length)
       }).catch(err => {
