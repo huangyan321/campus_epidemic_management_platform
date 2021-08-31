@@ -30,17 +30,12 @@
         <el-table :data="usersList" style="width: 100%" stripe border>
           <el-table-column type="index" />
           <el-table-column prop="username" label="用户" />
-          <el-table-column prop="email" label="邮箱" />
-          <el-table-column prop="mobile" label="电话" />
-          <el-table-column prop="role_name" label="角色" />
-          <el-table-column prop="mg_state" label="状态">
-            <template slot-scope="scope">
-              <el-switch
-                v-model="scope.row.mg_state"
-                active-color="#13ce66"
-                inactive-color="#ff4949"
-                @change="userStateChanged(scope.row)"
-              />
+          <el-table-column prop="sex" label="性别" />
+          <el-table-column prop="address" label="住址" />
+          <el-table-column prop="classes" label="班级" />
+          <el-table-column label="状态">
+             <template slot-scope="scope">
+              <span>{{scope.row.type === 1 ? "管理员" : scope.row.type === 2 ? "学生" : "教师"}}</span>
             </template>
           </el-table-column>
           <el-table-column label="操作">
@@ -146,9 +141,9 @@ export default {
   data() {
     return {
       queryInfo: {
-        query: "",
-        pagenum: 1,
-        pagesize: 10,
+        type: 3,
+        currPage: 0,
+        pageSize: 5,
       },
       usersList: [],
       total: 0,
@@ -176,6 +171,9 @@ export default {
   created() {
     this.getUsersList();
   },
+  computed: {
+
+  },
   methods: {
     // 更新页面数据
     async getUsersList() {
@@ -183,7 +181,7 @@ export default {
       res.meta.status === 200
         ? (() => {
           this.total = res.data.total;
-          this.usersList = res.data.users;
+          this.usersList = res.data.data;
         })()
         : this.$notify.error(res.meta.msg);
     },
