@@ -43,7 +43,7 @@ export default {
           this.$emit('successDelete',false)
           this.$notify.success("请求成功");
         })()
-        : this.$notify.error("err");
+        : this.$notify.error(res.meta.msg);
     },
   },
 }

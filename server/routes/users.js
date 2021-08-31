@@ -14,4 +14,7 @@ router.get('/getUserDataByToken',function(req,res,next) {
 router.get('/getUsersByTypePage',function(req,res,next) {
   user.getUsersByTypePage(req,res)
 })
+router.get('/delUserData',function(req,res,next) {
+  user.delUserData(req,res)
+})
 module.exports = router;

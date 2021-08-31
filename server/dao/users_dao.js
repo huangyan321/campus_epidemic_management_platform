@@ -2,6 +2,9 @@ const jwt = require("../utils/jwtUtils")
 global.globalkey = "123456"
 
 module.exports = class User_dao extends require("../model/users_mod") {
+  /**
+   * 登录接口
+   */
   static async Login(req, res) {
     let body = req.body
     let loginData = await this.userLogin(body.username, body.password, body.type)
@@ -31,20 +34,57 @@ module.exports = class User_dao extends require("../model/users_mod") {
       })
     } else res.sendStatus(500).send("用户名或密码错误")
   }
-  static async getUserDataByToken(req,res) {
-    let result = await jwt.verifysync(req.headers.authorization,global.globalkey);
-    res.send({data: {result},meta: {
-      msg: "查询成功",
-      status: 200
-    }})
+  /**
+   * 根据token获取用户信息
+   */
+  static async getUserDataByToken(req, res) {
+    let result = await jwt.verifysync(req.headers.authorization, global.globalkey);
+    res.send({
+      data: {
+        result
+      },
+      meta: {
+        msg: "查询成功",
+        status: 200
+      }
+    })
   }
+  /**
+   * 获取用户列表
+   */
   static async getUsersByTypePage(req, res) {
     let query = req.query;
-    let data = await this.getUsersByTypePageMod(query.type,query.currPage,query.pageSize)
+    let data = await this.getUsersByTypePageMod(query.type, query.currPage, query.pageSize)
     let total = await this.getUsersByTypePageTotal(query.type)
-    res.send({data: {data,total},meta: {
-      msg: "查询成功",
-      status: 200
-    }})
+    res.send({
+      data: {
+        data,
+        total
+      },
+      meta: {
+        msg: "查询成功",
+        status: 200
+      }
+    })
+  }
+  static async delUserData(req, res) {
+    let query = req.query;
+    if (query.id === '101') {
+      res.send({
+        meta: {
+          status: 500,
+          msg: '您不能删除管理员'
+        }
+      })
+    } else {
+      let data = await this.delUserDataMod(query.id)
+      res.send({
+        meta: {
+          status: 200,
+          msg: data
+        }
+      })
+    }
+
   }
 }
