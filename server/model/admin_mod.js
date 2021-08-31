@@ -1,6 +1,7 @@
 module.exports = class Admin_mod extends require('./model') {
   static getUsersByTypeCharMod(type, inputText, columnData, pageSize, currPage) {
     return new Promise((resolve, reject) => {
+      console.log(type);
       type = Number(type);
       pageSize = Number(pageSize);
       currPage = Number(currPage);

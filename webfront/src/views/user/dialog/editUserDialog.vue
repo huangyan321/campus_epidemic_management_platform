@@ -17,27 +17,38 @@
       <el-form-item label="用户名">
         <el-input v-model="changedUserData.username" disabled />
       </el-form-item>
-      <!-- 修改邮箱 -->
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model="changedUserData.email" />
+      <!-- 修改性别 -->
+      <el-form-item label="性别" prop="sex">
+        <el-input v-model="changedUserData.sex" />
       </el-form-item>
-      <!-- 修改手机 -->
-      <el-form-item label="手机" prop="mobile">
-        <el-input v-model="changedUserData.mobile" />
+      <!-- 修改用户等级 -->
+      <el-form-item label="用户等级" prop="type">
+        <el-select v-model="changedUserData.type" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <!-- 修改地址 -->
+      <el-form-item label="地址" prop="address">
+        <el-input v-model="changedUserData.address" />
       </el-form-item>
     </el-form>
     <!-- 底部 -->
     <span slot="footer">
       <el-button @click="$emit('closeDialog')">取 消</el-button>
-      <el-button
-        type="primary"
-        @click="savaChangeUser(changedUserData)"
-      >修 改</el-button>
+      <el-button type="primary" @click="savaChangeUser(changedUserData)"
+        >修 改</el-button
+      >
     </span>
   </el-dialog>
 </template>
 <script>
-import { saveUserInfo } from "@/api/user";
+import { upDataUserInfo } from "@/api/user";
 export default {
   name: "EditUserDialog",
   props: {
@@ -63,25 +74,36 @@ export default {
             trigger: "blur",
           },
         ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "change" },
-        ],
-        email: [
+        sex: [{ required: true, message: "请输入密码", trigger: "change" }],
+        type: [
           {
             required: true,
-            message: "请输入邮箱",
+            message: "请输入",
             trigger: "blur",
           },
         ],
-        mobile: [
+        address: [
           {
             required: true,
-            message: "请输入手机",
+            message: "请输入",
             trigger: "blur",
           },
-          { min: 11, max: 11, message: "11位数字", trigger: "blur" },
         ],
       },
+      options: [
+        {
+          value: "1",
+          label: "管理员",
+        },
+        {
+          value: "2",
+          label: "学生",
+        },
+        {
+          value: "3",
+          label: "教师",
+        },
+      ],
     };
   },
   methods: {
@@ -92,14 +114,14 @@ export default {
     // 对话框添加用户前预校验
     // 保存编辑的用户
     savaChangeUser(changedUserData) {
-      this.$refs.editUserDataRef.validate(async(valid) => {
+      this.$refs.editUserDataRef.validate(async (valid) => {
         if (!valid) return;
-        const res = await saveUserInfo(changedUserData.id, changedUserData);
+        const res = await upDataUserInfo(changedUserData);
         res.meta.status === 200
           ? (() => {
-            this.$emit("successEdit", false);
-            this.$notify.success("请求成功");
-          })()
+              this.$emit("successEdit", false);
+              this.$notify.success("请求成功");
+            })()
           : this.$notify.error(res.meta.msg);
       });
     },

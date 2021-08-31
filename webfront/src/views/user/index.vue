@@ -61,7 +61,7 @@
                   type="primary"
                   icon="el-icon-edit"
                   size="mini"
-                  @click="changeUserDialog(scope.row.id)"
+                  @click="changeUserDialog(scope.row)"
                 />
 
                 <!-- 删除按钮 -->
@@ -220,7 +220,7 @@ export default {
     //     : this.$notify.error(res.meta.msg);
     // },
     async getUsersByTypeAndChar(model) {
-      model ? this.searchInfo.currPage = 1 : "";
+      model ? (this.searchInfo.currPage = 1) : "";
       const res = await getUsersByTypeAndChar(this.searchInfo);
       res.meta.status === 200
         ? (() => {
@@ -262,13 +262,8 @@ export default {
       this.assingRoleVisible = status;
     },
     // 编辑对话框处理
-    async changeUserDialog(id) {
-      const res = await getThisUserInfo(id);
-      res.meta.status === 200
-        ? (() => {
-            this.changedUserData = res.data;
-          })()
-        : this.$notify.error(res.meta.msg);
+    async changeUserDialog(row) {
+      this.changedUserData = Object.assign({},row);
       this.editUserDialogVisible = true;
     },
     // 删除用户

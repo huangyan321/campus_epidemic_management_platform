@@ -67,6 +67,9 @@ module.exports = class User_dao extends require("../model/users_mod") {
       }
     })
   }
+  /**
+   * 用户删除
+   */
   static async delUserData(req, res) {
     let query = req.query;
     if (query.id === '101') {
@@ -85,6 +88,18 @@ module.exports = class User_dao extends require("../model/users_mod") {
         }
       })
     }
-
+  }
+  /**
+   * 修改用户信息
+   */
+  static async upDataUserInfo(req, res) {
+    let body = req.body;
+    let data = await this.upDataUserInfoMod(body.id, body.username, body.sex, body.address, body.type)
+    res.send({
+      meta: {
+        status: 200,
+        msg: data
+      }
+    })
   }
 }

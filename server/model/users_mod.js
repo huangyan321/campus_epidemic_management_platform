@@ -30,7 +30,7 @@ module.exports = class Users_mod extends require('./model') {
     type = Number(type);
     pageSize = Number(pageSize);
     currPage = Number(currPage);
-    currPage = Number((currPage-1) * pageSize)
+    currPage = Number((currPage - 1) * pageSize)
     console.log(currPage);
     return new Promise((resolve, reject) => {
       let sql;
@@ -39,7 +39,7 @@ module.exports = class Users_mod extends require('./model') {
       } else {
         sql = "select * from usertable LIMIT ?, ?"
       }
-      let params = this.formatParams(currPage , pageSize);
+      let params = this.formatParams(currPage, pageSize);
       this.query(sql, params).then(res => {
         resolve(res)
       }).catch(err => {
@@ -68,11 +68,26 @@ module.exports = class Users_mod extends require('./model') {
       })
     })
   }
+  /**
+   * 
+   * @param {String} 用户id 
+   * @returns Promise
+   */
   static delUserDataMod(id) {
-    return new Promise((resolve,reject) => {
-      let sql = "delete from usertable where id= " +id
+    return new Promise((resolve, reject) => {
+      let sql = "delete from usertable where id= " + id
       this.query(sql).then(res => {
         resolve("删除用户成功")
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  }
+  static upDataUserInfoMod(id, username, sex, address, type) {
+    return new Promise((resolve, reject) => {
+      let sql = "update usertable set username='" + username + "',sex='" + sex + "',address='" + address + "',type=" + type + " where id=" + id
+      this.query(sql).then(res => {
+        resolve("修改成功")
       }).catch(err => {
         reject(err)
       })

@@ -17,4 +17,8 @@ router.get('/getUsersByTypePage',function(req,res,next) {
 router.get('/delUserData',function(req,res,next) {
   user.delUserData(req,res)
 })
+//用户信息修改
+router.post('/upDataUserInfo',function(req,res,next) {
+  user.upDataUserInfo(req,res)
+})
 module.exports = router;

@@ -13,3 +13,10 @@ export function deleteThisUserInfo(id) {
     method: 'get',
   })
 }
+export function upDataUserInfo(data) {
+  return request({
+    url: `/users/upDataUserInfo`,
+    method: 'post',
+    data: data
+  })
+}
