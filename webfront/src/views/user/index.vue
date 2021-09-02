@@ -5,7 +5,7 @@
       <!-- 搜索框区域 -->
       <div style="margin-top: 15px" />
       <el-row :gutter="20">
-        <el-col :span="9"
+        <el-col :span="4"
           ><el-input
             v-model="searchInfo.inputText"
             placeholder="请输入内容"
@@ -28,7 +28,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="6"
+        <el-col :span="2"
           ><el-button type="primary" @click="addDialogVisible = true"
             >添加用户</el-button
           ></el-col
@@ -72,22 +72,6 @@
                   size="mini"
                   @click="userDelet(scope.row.id)"
                 />
-
-                <!-- 设置按钮 -->
-
-                <el-tooltip
-                  class="tooltip"
-                  effect="dark"
-                  content="分配角色"
-                  placement="top"
-                >
-                  <el-button
-                    type="warning"
-                    icon="el-icon-setting"
-                    size="mini"
-                    @click="assignRoles(scope.row)"
-                  />
-                </el-tooltip>
               </div>
 
               <!-- 编辑按钮 -->
@@ -124,31 +108,21 @@
       @successDelete="successDeleteUser"
       @closeDialog="deleteUserDialogVisible = false"
     />
-    <assign-user-dialog
-      :assing-role-visible="assingRoleVisible"
-      :user-info="userInfo"
-      :roles-list="rolesList"
-      @successAssign="successAssignUser"
-      @closeDialog="assingRoleVisible = false"
-    />
   </div>
 </template>
 
 <script>
-import {
-} from "@/api/user";
+import {} from "@/api/user";
 import { getUsersByTypeAndChar } from "@/api/admin";
 import addUserDialog from "./dialog/addUserDialog.vue";
 import editUserDialog from "./dialog/editUserDialog.vue";
 import deleteUserDialog from "./dialog/deleteUserDialog.vue";
-import assignUserDialog from "./dialog/assignUserDialog.vue";
 export default {
   name: "Users",
   components: {
     addUserDialog,
     deleteUserDialog,
     editUserDialog,
-    assignUserDialog,
   },
   data() {
     return {
@@ -194,8 +168,6 @@ export default {
       changedUserData: {},
       // 当前选择删除的用户id
       deleteUserId: null,
-      // 控制分配角色对话框的显示与隐藏
-      assingRoleVisible: false,
       userInfo: {},
       rolesList: [],
     };
@@ -253,30 +225,15 @@ export default {
       this.getUsersByTypeAndChar(0);
       this.editUserDialogVisible = status;
     },
-    successAssignUser(status) {
-      this.getUsersByTypeAndChar(0);
-      this.assingRoleVisible = status;
-    },
     // 编辑对话框处理
     async changeUserDialog(row) {
-      this.changedUserData = Object.assign({},row);
+      this.changedUserData = Object.assign({}, row);
       this.editUserDialogVisible = true;
     },
     // 删除用户
     userDelet(id) {
       this.deleteUserId = id;
       this.deleteUserDialogVisible = true;
-    },
-    // 获取所有角色列表
-    async assignRoles(role) {
-      this.userInfo = role;
-      const res = await getAllRolesList("roles");
-      res.meta.status === 200
-        ? (() => {
-            this.rolesList = res.data;
-          })()
-        : this.$notify.error(res.meta.msg);
-      this.assingRoleVisible = true;
     },
   },
 };
@@ -291,7 +248,9 @@ export default {
 }
 
 .top {
-  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 .tooltip {
   width: 44px;
