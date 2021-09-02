@@ -14,4 +14,10 @@ router.post('/announce',function(req,res,next) {
 router.get('/getAllNotice',function (req, res, next) {
   admin.getAllNotice(req, res)
 })
+router.get('/getLeave',function (req, res) {
+  admin.getLeave(req, res)
+})
+router.get('/upLeaveState',function (req, res) {
+  admin.upLeaveState(req, res)
+})
 module.exports = router;
