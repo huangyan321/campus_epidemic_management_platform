@@ -87,82 +87,53 @@ export const constantRoutes = [{
       icon: 'el-icon-s-help'
     },
     children: [{
-      path: 'setHealth',
-      name: 'setHealth',
-      component: () => import('@/views/student/healthTable/index'),
-      meta: {
-        title: '健康报表',
-        icon: 'form'
-      }
-    }, ]
-  },
-  {
-    path: '/goodsManage',
-    component: Layout,
-    redirect: '/goodsManage/goods',
-    name: 'goodsManage',
-    meta: {
-      title: '商品管理',
-      icon: 'el-icon-s-help'
-    },
-    children: [{
-        path: 'goods',
-        name: 'Goods',
-        component: () => import('@/views/goodsManage/goods'),
+        path: 'setHealth',
+        name: 'setHealth',
+        component: () => import('@/views/student/healthTable/index'),
         meta: {
-          title: '商品列表',
+          title: '健康报表',
           icon: 'form'
         }
       },
       {
-        path: 'params',
-        name: 'Params',
-        component: () => import('@/views/goodsManage/params'),
-        meta: {
-          title: '分类参数',
+				path: 'setLeave',
+				name: 'setLeave',
+				component: () => import('@/views/student/leave/index'),
+				meta: {
+          title: '请假申请',
           icon: 'form'
         }
       },
-      {
-        path: 'categories',
-        name: 'Categories',
-        component: () => import('@/views/goodsManage/categories'),
-        meta: {
-          title: '商品分类',
+			{
+				path: 'notice',
+				name: 'notice',
+				component: () => import('@/views/student/notice/index'),
+				meta: {
+          title: '我的通知',
           icon: 'form'
         }
       }
     ]
   },
   {
-    path: '/goods',
+    path: '/admin',
     component: Layout,
-    redirect: '/goods/add',
-    name: 'goods',
-    children: [{
-      path: 'add',
-      name: 'add',
-      component: () => import('@/views/goodsManage/goods/addGoods/Add'),
-    }]
-  },
-  {
-    path: '/orderManage',
-    component: Layout,
-    redirect: '/orderManage/orderList',
+    redirect: '/admin/getLeave',
     name: 'goodsManage',
     meta: {
-      title: '订单管理',
+      title: '教师管理',
       icon: 'el-icon-s-help'
     },
     children: [{
-      path: 'orderList',
-      name: 'OrderList',
-      component: () => import('@/views/orderManage/orderList'),
-      meta: {
-        title: '订单列表',
-        icon: 'form'
+        path: 'getLeave',
+        name: 'getLeave',
+        component: () => import('@/views/teacher/leave/index'),
+        meta: {
+          title: '请假审批',
+          icon: 'form'
+        }
       }
-    }, ]
+    ]
   },
   {
     path: '/reports',

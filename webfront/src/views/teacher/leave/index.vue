@@ -1,5 +1,7 @@
 <template>
-	<div>健康报表</div>
+	<div>
+		请假审批
+	</div>
 </template>
 <script>
 export default {

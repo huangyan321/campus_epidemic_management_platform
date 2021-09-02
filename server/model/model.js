@@ -17,10 +17,11 @@ module.exports = class Model {
 					connection.release();
 				} else {
 					console.log("数据库连接成功");
+					console.log("正在同数据库交互....");
 					connection.query(sql, params, (err, results) => {
 						if (err) {
+							reject(err);
 							console.error(err);
-							reject();
 						} else {
 							resolve(results)
 						}

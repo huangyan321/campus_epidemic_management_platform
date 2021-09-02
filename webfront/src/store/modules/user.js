@@ -1,11 +1,19 @@
-import { login, getInfo } from '@/api/login'
+import {
+  login,
+  getInfo
+} from '@/api/login'
+import {
+  Message
+} from 'element-ui'
 import {
   getToken,
   setToken,
   removeToken,
   getRoleId,
 } from '@/utils/auth'
-import { resetRouter } from '@/router'
+import {
+  resetRouter
+} from '@/router'
 
 const getDefaultState = () => {
   return {
@@ -38,15 +46,36 @@ const mutations = {
 
 const actions = {
   // user login
-  login({ commit }, userInfo) {
-    const { username, password ,type} = userInfo
+  login({
+    commit
+  }, userInfo) {
+    const {
+      username,
+      password,
+      type
+    } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password ,type: type}).then(response => {
-        const { data } = response;
-        commit('SET_TOKEN', data.token);
-        commit('SET_ID', data.id);
-        setToken(data.token);
-        resolve()
+      login({
+        username: username.trim(),
+        password: password,
+        type: type
+      }).then(res => {
+        if (res.meta.status === 200) {
+          const {
+            data
+          } = res;
+          commit('SET_TOKEN', data.token);
+          commit('SET_ID', data.id);
+          setToken(data.token);
+          resolve()
+        } else {
+          Message({
+            message: res.meta.msg,
+            type: 'error',
+            duration: 5 * 1000
+          })
+					reject(error)
+        }
       }).catch(error => {
         reject(error)
       })
@@ -54,10 +83,15 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo({
+    commit,
+    state
+  }) {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
-        const { data } = response
+        const {
+          data
+        } = response
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
@@ -76,7 +110,10 @@ const actions = {
   },
 
   // user logout
-  logout({ commit, state }) {
+  logout({
+    commit,
+    state
+  }) {
     return new Promise((resolve, reject) => {
       removeToken() // must remove  token  first
       resetRouter()
@@ -86,7 +123,9 @@ const actions = {
   },
 
   // remove token
-  resetToken({ commit }) {
+  resetToken({
+    commit
+  }) {
     return new Promise(resolve => {
       removeToken() // must remove  token  first
       commit('RESET_STATE')
@@ -101,4 +140,3 @@ export default {
   mutations,
   actions
 }
-

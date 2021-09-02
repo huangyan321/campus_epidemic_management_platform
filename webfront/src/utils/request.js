@@ -1,8 +1,7 @@
 import axios from 'axios'
 import {
-  // MessageBox,
   Message
-} from 'element-ui'
+} from '../elementUI/index.js'
 import store from '@/store'
 import {
   getToken
