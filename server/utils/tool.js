@@ -39,6 +39,13 @@ let getDate19 = function () {
   return new Date().format(f19);
 }
 
+let getNowDay = function () {
+	return getDate19().split(" ")[0];
+}
+
+let getNowMonth = function () {
+	return getNowDay().substring(0,getNowDay().lastIndexOf("-"));
+}
 /**
  * 获取昨天的日期
  * @return {void | string | *}
@@ -142,6 +149,7 @@ Date.prototype.format = function (fmt) {
   }
   return fmt;
 }
+
 /**
  *
  * @param req
@@ -162,6 +170,8 @@ module.exports = {
   formatPageNo,
   formatPageSize,
   getYestoday,
-  error
+  error,
+	getNowDay,
+	getNowMonth
 
 }
