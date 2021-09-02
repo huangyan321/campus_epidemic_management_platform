@@ -138,12 +138,12 @@ module.exports = class Admin_mod extends require('./model') {
 			})
 		})
 	}
-/**
- * 请假审批(0:未审批,1:审批通过,2:审批不通过)
- * @param {Number} l_id 
- * @param {Number} 状态 
- * @returns 
- */
+	/**
+	 * 请假审批(0:未审批,1:审批通过,2:审批不通过)
+	 * @param {Number} l_id 
+	 * @param {Number} 状态 
+	 * @returns 
+	 */
 	static upLeaveStateMod(l_id, upState) {
 		return new Promise((resolve, reject) => {
 			l_id = Number(l_id);

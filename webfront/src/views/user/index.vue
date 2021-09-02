@@ -136,10 +136,6 @@
 
 <script>
 import {
-  fetchUserList,
-  fetchUserPageList,
-  getThisUserInfo,
-  getAllRolesList,
 } from "@/api/user";
 import { getUsersByTypeAndChar } from "@/api/admin";
 import addUserDialog from "./dialog/addUserDialog.vue";

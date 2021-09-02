@@ -17,7 +17,7 @@ router.get('/toUnread',function(req,res) {
 router.get('/toRead',function(req,res) {
   student.toRead(req,res)
 })
-router.get('/setHealth',function(req,res) {
+router.post('/setHealth',function(req,res) {
   student.setHealth(req,res)
 })
 router.get('/gethealthNowDayPage',function(req,res) {

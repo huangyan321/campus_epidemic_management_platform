@@ -202,7 +202,7 @@ module.exports = class Student_mod extends require('./model') {
 	/**
 	 * 获取所有健康报表
 	 */
-	 static getAllHealthMod() {
+	static getAllHealthMod() {
 		return new Promise((resolve, reject) => {
 			let sql = "select * from health order by createtime";
 			this.query(sql).then(res => {
@@ -212,11 +212,11 @@ module.exports = class Student_mod extends require('./model') {
 			})
 		})
 	}
-	static setLeaveMod(u_id,classes,reason,leavetype,starttime,endtime) {
-		return new Promise((resolve,reject) => {
+	static setLeaveMod(u_id, classes, reason, leavetype, starttime, endtime) {
+		return new Promise((resolve, reject) => {
 			let createtime = getDate19()
 			const sql = "insert into leavetable (u_id,classes,reason,leavetype,starttime,endtime,state,createtime) values (?,?,?,?,?,?,?,?)"
-			this.query(sql,this.formatParams(u_id,classes,reason,leavetype,starttime,endtime,0,createtime)).then(res => {
+			this.query(sql, this.formatParams(u_id, classes, reason, leavetype, starttime, endtime, 0, createtime)).then(res => {
 				resolve("申请已提交")
 			}).catch(err => {
 				reject(err)

@@ -68,10 +68,10 @@ module.exports = class Student_dao extends require("../model/student_mod") {
 	 * 健康报表
 	 */
 	static async setHealth(req, res) {
-		let query = req.query;
-		let tokenData = await jwt.verifysync(req.query.token, global.globalkey)
+		let body = req.body;
+		let tokenData = await jwt.verifysync(body.token, global.globalkey)
 		let u_id = tokenData.id;
-		let data = await this.setHealthMod(u_id, query.temperature, query.hot, query.gohubei, query.hubeiren, query.fever, query.leaveout, query.hesuan, query.mask, query.masknum, query.kills)
+		let data = await this.setHealthMod(u_id, body.temperature, body.hot, body.gohubei, body.hubeiren, body.fever, body.leaveout, body.hesuan, body.mask, body.masknum, body.kills)
 		res.send({
 			meta: {
 				status: 200,

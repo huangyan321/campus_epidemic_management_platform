@@ -17,7 +17,7 @@
   </el-dialog>
 </template>
 <script>
-import { deleteThisUserInfo } from "@/api/user";
+import { delUserData } from "@/api/user";
 export default {
   name: "DeleteUserDialog",
   props: {
@@ -37,7 +37,10 @@ export default {
   methods: {
   // 确定删除用户
     async sureDeleteUser() {
-      const res = await deleteThisUserInfo(this.deleteUserId);
+			console.log(this.deleteUserId);
+      const res = await delUserData({
+				id:this.deleteUserId
+			});
       res.meta.status === 200
         ? (() => {
           this.$emit('successDelete',false)
