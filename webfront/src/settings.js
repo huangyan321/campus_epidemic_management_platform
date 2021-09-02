@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'Campus_epidemic_management_platform',
 
   /**
    * @type {boolean} true | false
