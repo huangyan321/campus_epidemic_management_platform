@@ -17,4 +17,25 @@ router.get('/toUnread',function(req,res) {
 router.get('/toRead',function(req,res) {
   student.toRead(req,res)
 })
+router.get('/setHealth',function(req,res) {
+  student.setHealth(req,res)
+})
+router.get('/gethealthNowDayPage',function(req,res) {
+	student.gethealthNowDayPage(req,res)
+})
+router.get('/getHealthNowDayById',function(req,res) {
+	student.getHealthNowDayById(req,res)
+})
+router.get('/gethealthNowDay',function(req,res) {
+	student.gethealthNowDay(req,res)
+})
+router.get('/gethealthNowMonth',function(req,res) {
+	student.gethealthNowMonth(req,res)
+})
+router.get('/getAllHealth',function(req,res) {
+	student.getAllHealth(req,res)
+})
+router.post('/setLeave',function(req,res) {
+	student.setLeave(req,res)
+})
 module.exports = router;
