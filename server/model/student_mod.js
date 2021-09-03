@@ -17,6 +17,7 @@ module.exports = class Student_mod extends require('./model') {
 		currPage = Number((currPage - 1) * pageSize)
 		return new Promise((resolve, reject) => {
 			let sql = "select * from notice where class like '%" + classes + "%' order by createtime desc LIMIT ?,?"
+      console.log(sql);
 			let params = this.formatParams(currPage, pageSize);
 			this.query(sql, params).then(res => {
 				resolve(res)

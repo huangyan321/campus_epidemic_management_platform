@@ -14,6 +14,9 @@ router.post('/announce',function(req,res,next) {
 router.get('/getAllNotice',function (req, res, next) {
   admin.getAllNotice(req, res)
 })
+router.get('/noticeDel',function (req, res, next) {
+  admin.noticeDel(req, res)
+})
 router.get('/getLeave',function (req, res) {
   admin.getLeave(req, res)
 })

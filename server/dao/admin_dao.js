@@ -44,6 +44,20 @@ module.exports = class Admin_dao extends require("../model/admin_mod") {
       }
     })
   }
+  /**
+   * 通知删除
+   */
+  static async noticeDel(req,res) {
+    const query = req.query;
+    const {n_id} = query;
+    let data = await this.noticeDelMod(n_id)
+    res.send({
+      meta: {
+        msg: data,
+        status: 200
+      }
+    })
+  }
 	/**
 	 * 获取请假审批单
 	 */
