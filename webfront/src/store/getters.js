@@ -6,6 +6,7 @@ const getters = {
   device: state => state.app.device,
   token: state => state.user.token,
   avatar: state => getDomain() + "/imgs/" + state.user.avatar,
-  name: state => state.user.name
+  name: state => state.user.name,
+  classes: state => state.user.classes
 }
 export default getters

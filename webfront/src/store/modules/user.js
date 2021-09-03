@@ -20,7 +20,8 @@ const getDefaultState = () => {
     token: getToken(),
     roleId: getRoleId(),
     name: '',
-    avatar: ''
+    avatar: '',
+    classes: [],
   }
 }
 
@@ -41,6 +42,13 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_CLASSES: (state, classes) => {
+    state.classes = classes.split(';')
+  },
+  SET_CLASSES1: (state, classes) => {
+    console.log(classes);
+    state.classes = classes
   }
 }
 
@@ -64,6 +72,7 @@ const actions = {
           const {
             data
           } = res;
+          console.log(data);
           commit('SET_TOKEN', data.token);
           commit('SET_ID', data.id);
           setToken(data.token);
@@ -74,7 +83,7 @@ const actions = {
             type: 'error',
             duration: 5 * 1000
           })
-					reject(error)
+          reject(error)
         }
       }).catch(error => {
         reject(error)
@@ -97,10 +106,11 @@ const actions = {
         }
         const {
           username,
-          head
+          head,
+          classes
         } = data.result
-        console.log(head);
         commit('SET_NAME', username)
+        commit('SET_CLASSES', classes)
         commit('SET_AVATAR', head)
         resolve(data)
       }).catch(error => {
