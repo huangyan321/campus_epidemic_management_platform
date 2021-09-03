@@ -96,19 +96,19 @@ export const constantRoutes = [{
         }
       },
       {
-				path: 'setLeave',
-				name: 'setLeave',
-				component: () => import('@/views/student/leave/index'),
-				meta: {
+        path: 'setLeave',
+        name: 'setLeave',
+        component: () => import('@/views/student/leave/index'),
+        meta: {
           title: '请假申请',
           icon: 'form'
         }
       },
-			{
-				path: 'notice',
-				name: 'notice',
-				component: () => import('@/views/student/notice/index'),
-				meta: {
+      {
+        path: 'notice',
+        name: 'notice',
+        component: () => import('@/views/student/notice/index'),
+        meta: {
           title: '我的通知',
           icon: 'form'
         }
@@ -125,15 +125,23 @@ export const constantRoutes = [{
       icon: 'el-icon-s-help'
     },
     children: [{
-        path: 'getLeave',
-        name: 'getLeave',
-        component: () => import('@/views/teacher/leave/index'),
-        meta: {
-          title: '请假审批',
-          icon: 'form'
-        }
+      path: 'getLeave',
+      name: 'getLeave',
+      component: () => import('@/views/teacher/leave/index'),
+      meta: {
+        title: '请假审批',
+        icon: 'form'
       }
-    ]
+    },
+    {
+      path: 'release',
+      name: 'release',
+      component: () => import('@/views/teacher/notice/index'),
+      meta: {
+        title: '通知发布',
+        icon: 'form'
+      }
+    }]
   },
   {
     path: '/reports',
