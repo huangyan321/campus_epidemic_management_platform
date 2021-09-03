@@ -29,7 +29,7 @@
                 <el-select
                   v-model="releaseInfo.classes"
                   multiple
-                  placeholder="请选择"
+                  placeholder="请选择班级"
                 >
                   <el-option
                     v-for="item in classes"
