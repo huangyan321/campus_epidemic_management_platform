@@ -2,7 +2,7 @@ import request from '@/utils/request'
 //我的通知分页获取数据与数量
 export function getNotice(params) {
   return request({
-    url: '/students/getNotice',
+    url: '/student/getNotice',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function getNotice(params) {
 //获取的我通知已读列表(供已读未读状态渲染) 
 export function getNoticeRead(params) {
   return request({
-    url: '/students/getNoticeRead',
+    url: '/student/getNoticeRead',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function getNoticeRead(params) {
 //已读转未读
 export function toUnread(params) {
   return request({
-    url: '/students/toUnread',
+    url: '/student/toUnread',
     method: 'get',
     params
   })
@@ -26,7 +26,7 @@ export function toUnread(params) {
 //未读转已读
 export function toRead(params) {
   return request({
-    url: '/students/toUnread',
+    url: '/student/toUnread',
     method: 'get',
     params
   })
@@ -34,7 +34,7 @@ export function toRead(params) {
 //健康填报表
 export function setHealth(data) {
   return request({
-    url: '/students/setHealth',
+    url: '/student/setHealth',
     method: 'post',
     data
   })
@@ -42,7 +42,7 @@ export function setHealth(data) {
 //分页获取当天填报表与总数量
 export function gethealthNowDayPage(params) {
   return request({
-    url: '/students/gethealthNowDayPage',
+    url: '/student/gethealthNowDayPage',
     method: 'get',
     params
   })
@@ -50,7 +50,7 @@ export function gethealthNowDayPage(params) {
 //获取当天某用户报表
 export function getHealthNowDayById(params) {
   return request({
-    url: '/students/getHealthNowDayById',
+    url: '/student/getHealthNowDayById',
     method: 'get',
     params
   })
@@ -58,7 +58,7 @@ export function getHealthNowDayById(params) {
 //分页获取当天填报表与总数量
 export function gethealthNowDay(params) {
   return request({
-    url: '/students/gethealthNowDay',
+    url: '/student/gethealthNowDay',
     method: 'get',
     params
   })
@@ -66,7 +66,7 @@ export function gethealthNowDay(params) {
 //获取当月报表
 export function gethealthNowMonth(params) {
   return request({
-    url: '/students/gethealthNowMonth',
+    url: '/student/gethealthNowMonth',
     method: 'get',
     params
   })
@@ -74,7 +74,7 @@ export function gethealthNowMonth(params) {
 //获取所有报表
 export function getAllHealth(params) {
   return request({
-    url: '/students/getAllHealth',
+    url: '/student/getAllHealth',
     method: 'get',
     params
   })
@@ -82,7 +82,7 @@ export function getAllHealth(params) {
 //请假申请
 export function setLeave(data) {
   return request({
-    url: '/students/setLeave',
+    url: '/student/setLeave',
     method: 'post',
     data
   })
