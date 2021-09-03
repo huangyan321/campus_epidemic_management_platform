@@ -15,6 +15,14 @@ export function announce(data) {
     data
   })
 }
+//通知删除
+export function noticeDel(params) {
+  return request({
+    url: '/admin/noticeDel',
+    method: 'get',
+    params
+  })
+}
 //获取所有通知与数量(分页获取)
 export function getAllNotice(params) {
   return request({

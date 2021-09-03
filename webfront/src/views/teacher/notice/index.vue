@@ -4,11 +4,7 @@
       <div slot="header" class="clearfix">
         <span class="title">填写通知</span>
       </div>
-      <el-form
-        ref="noticeRef"
-        :model="releaseInfo"
-        :rules="rules"
-      >
+      <el-form ref="noticeRef" :model="releaseInfo" :rules="rules">
         <el-row
           :gutter="20"
           type="flex"
@@ -67,7 +63,9 @@
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button type="text">详情</el-button>
-                <el-button type="text" @click="noticeDel(scope.row)">删除</el-button>
+                <el-button type="text" @click="noticeDel(scope.row)"
+                  >删除</el-button
+                >
               </template>
             </el-table-column>
           </el-table>
@@ -88,7 +86,7 @@
 </template>
 <script>
 import { getNotice } from "@/api/student";
-import { announce } from "@/api/admin";
+import { announce, noticeDel } from "@/api/admin";
 import { mapGetters } from "vuex";
 export default {
   name: "index",
@@ -99,7 +97,7 @@ export default {
 
   data() {
     return {
-      loading:false,
+      loading: false,
       queryInfo: {
         currPage: 1,
         pageSize: 5,
@@ -119,7 +117,9 @@ export default {
             trigger: "blur",
           },
         ],
-        classes: [{ required: true, message: "至少选择一个班级", trigger: "change" }],
+        classes: [
+          { required: true, message: "至少选择一个班级", trigger: "change" },
+        ],
       },
     };
   },
@@ -143,21 +143,28 @@ export default {
     },
     async noticeRel() {
       this.$refs.noticeRef.validate(async (valid) => {
-        if(!valid)return ;
+        if (!valid) return;
         this.loading = true;
         let res = await announce({
           title: this.releaseInfo.title,
-          classes: this.releaseInfo.classes.join(';')
-        })
-        res.meta.status === 200 ? (() => {
-          this.$notify.success(res.meta.msg)
-          this.getNotice();
-        })()
-        : this.$notify.error(res.meta.msg)
-      })
+          classes: this.releaseInfo.classes.join(";"),
+        });
+        res.meta.status === 200
+          ? (() => {
+              this.$notify.success(res.meta.msg);
+              this.getNotice();
+            })()
+          : this.$notify.error(res.meta.msg);
+      });
     },
     async noticeDel(row) {
-      console.log(row);
+      let res = await noticeDel({ n_id: row.n_id });
+      res.meta.status === 200
+        ? (() => {
+            this.$notify.success(res.meta.msg);
+            this.getNotice();
+          })()
+        : this.$notify.error(res.meta.msg);
     },
     handleSizeChange(pageSize) {
       this.queryInfo.pageSize = pageSize;
