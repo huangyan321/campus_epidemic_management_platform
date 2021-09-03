@@ -16,8 +16,8 @@ module.exports = class Model {
 					console.error(err);
 					connection.release();
 				} else {
-					console.log("数据库连接成功");
-					console.log("正在同数据库交互....");
+					console.log("数据库连接成功\n正在交互..");
+					
 					connection.query(sql, params, (err, results) => {
 						if (err) {
 							reject(err);
