@@ -1,16 +1,22 @@
 import router from './router'
 import store from './store'
-import { Message } from 'element-ui'
+import {
+  Message
+} from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import {
+  getToken
+} from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({
+  showSpinner: false
+}) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
   // set page title
@@ -21,17 +27,31 @@ router.beforeEach(async(to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({
+        path: '/'
+      })
       NProgress.done()
     } else {
+      const hasGetRouters = store.getters.routers
       const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      if (hasGetUserInfo && hasGetRouters.length) {
         next()
       } else {
         try {
           // get user info
-          await store.dispatch('user/getInfo')
-          next()
+          const {
+            type
+          } = await store.dispatch('user/getInfo')
+          let typeArr = [];
+          typeArr.push(type)
+          await store.dispatch('permission/GenerateRoutes', {
+            type: typeArr
+          })
+          router.addRoutes(store.getters.addRouters);
+          next({
+            ...to,
+            replace: true
+          })
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')

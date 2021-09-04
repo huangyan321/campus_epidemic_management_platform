@@ -7,6 +7,8 @@ const getters = {
   token: state => state.user.token,
   avatar: state => getDomain() + "/imgs/" + state.user.avatar,
   name: state => state.user.name,
-  classes: state => state.user.classes
+  classes: state => state.user.classes,
+  addRouters: state => state.permission.addRouters,
+  routers: state => state.permission.routers
 }
 export default getters

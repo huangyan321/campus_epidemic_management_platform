@@ -30,7 +30,7 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [{
+export const constantRouterMap = [{
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -56,120 +56,7 @@ export const constantRoutes = [{
       }
     }]
   },
-  {
-    path: '/user',
-    component: Layout,
-    redirect: '/user/student',
-    name: 'user',
-    meta: {
-      title: '用户管理',
-      icon: 'el-icon-s-help'
-    },
-    children: [{
-      path: 'student',
-      name: 'student',
-      component: () => import('@/views/userManage/student/index'),
-      meta: {
-        title: '学生列表',
-        icon: 'table'
-      }
-    },
-  {
-    path: 'teacher',
-    name: 'teacher',
-    component: () => import('@/views/userManage/teacher/index'),
-    meta: {
-      title: '教师列表',
-      icon: 'table'
-    }
-  }, ]
-  },
 
-  {
-    path: '/studentManage',
-    component: Layout,
-    redirect: '/studentManage/setHealth',
-    name: 'studentManage',
-    meta: {
-      title: '学生管理',
-      icon: 'el-icon-s-help'
-    },
-    children: [{
-        path: 'setHealth',
-        name: 'setHealth',
-        component: () => import('@/views/student/healthTable/index'),
-        meta: {
-          title: '健康报表',
-          icon: 'form'
-        }
-      },
-      {
-        path: 'setLeave',
-        name: 'setLeave',
-        component: () => import('@/views/student/leave/index'),
-        meta: {
-          title: '请假申请',
-          icon: 'form'
-        }
-      },
-      {
-        path: 'notice',
-        name: 'notice',
-        component: () => import('@/views/student/notice/index'),
-        meta: {
-          title: '我的通知',
-          icon: 'form'
-        }
-      }
-    ]
-  },
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin/getLeave',
-    name: 'goodsManage',
-    meta: {
-      title: '教师管理',
-      icon: 'el-icon-s-help'
-    },
-    children: [{
-      path: 'getLeave',
-      name: 'getLeave',
-      component: () => import('@/views/teacher/leave/index'),
-      meta: {
-        title: '请假审批',
-        icon: 'form'
-      }
-    },
-    {
-      path: 'release',
-      name: 'release',
-      component: () => import('@/views/teacher/notice/index'),
-      meta: {
-        title: '通知发布',
-        icon: 'form'
-      }
-    }]
-  },
-  {
-    path: '/classManage',
-    component: Layout,
-    redirect: '/classManage/addClass',
-    name: 'report',
-    meta: {
-      title: '班级管理',
-      icon: 'el-icon-s-help'
-    },
-    children: [{
-      path: 'addClass',
-      name: 'addClass',
-      component: () => import('@/views/addClass'),
-      meta: {
-        title: '添加班级',
-        icon: 'form'
-      }
-    }, ]
-  },
   {
     path: 'external-link',
     component: Layout,
@@ -181,7 +68,144 @@ export const constantRoutes = [{
       }
     }]
   },
-
+]
+export const asyncRouterMap = [{
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/student',
+    name: 'admin',
+    meta: {
+      title: '用户管理',
+      icon: 'el-icon-s-help',
+      type: [1]
+    },
+    children: [{
+        path: 'student',
+        name: 'student',
+        component: () => import('@/views/userManage/student/index'),
+        meta: {
+          title: '学生列表',
+          icon: 'table',
+          type: [1]
+        }
+      },
+      {
+        path: 'teacher',
+        name: 'teacher',
+        component: () => import('@/views/userManage/teacher/index'),
+        meta: {
+          title: '教师列表',
+          icon: 'table',
+          type: [1]
+        }
+      },
+    ]
+  },
+  {
+    path: '/classManage',
+    component: Layout,
+    redirect: '/classManage/addClass',
+    name: 'classManage',
+    meta: {
+      title: '班级管理',
+      icon: 'el-icon-s-help',
+      type: [1]
+    },
+    children: [{
+      path: 'addClass',
+      name: 'addClass',
+      component: () => import('@/views/addClass'),
+      meta: {
+        title: '添加班级',
+        icon: 'form',
+        type: [1]
+      }
+    }, ]
+  },
+  {
+    path: '/studentManage',
+    component: Layout,
+    redirect: '/studentManage/setHealth',
+    name: 'studentManage',
+    meta: {
+      title: '学生管理',
+      icon: 'el-icon-s-help',
+      type: [2]
+    },
+    children: [{
+        path: 'setHealth',
+        name: 'setHealth',
+        component: () => import('@/views/student/healthTable/index'),
+        meta: {
+          title: '健康报表',
+          icon: 'form',
+          type: [2]
+        }
+      },
+      {
+        path: 'setLeave',
+        name: 'setLeave',
+        component: () => import('@/views/student/leave/index'),
+        meta: {
+          title: '请假申请',
+          icon: 'form',
+          type: [2]
+        }
+      },
+      {
+        path: 'notice',
+        name: 'notice',
+        component: () => import('@/views/student/notice/index'),
+        meta: {
+          title: '我的通知',
+          icon: 'form',
+          type: [2]
+        }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin/getLeave',
+    name: 'goodsManage',
+    meta: {
+      title: '教师管理',
+      icon: 'el-icon-s-help',
+      type: [3]
+    },
+    children: [{
+      path: 'getLeave',
+      name: 'getLeave',
+      component: () => import('@/views/teacher/leave/index'),
+      meta: {
+        title: '请假审批',
+        icon: 'form',
+        type: [3]
+      }
+    }, ]
+  },
+  {
+    path: '/noticeManage',
+    component: Layout,
+    redirect: '/noticeManage/release',
+    name: 'goodsManage',
+    meta: {
+      title: '通知管理',
+      icon: 'el-icon-s-help',
+      type: [1, 3]
+    },
+    children: [{
+      path: 'release',
+      name: 'release',
+      component: () => import('@/views/notice/index'),
+      meta: {
+        title: '通知发布',
+        icon: 'form',
+        type: [1, 3]
+      }
+    }]
+  },
   // 404 page must be placed at the end !!!
   {
     path: '*',
@@ -195,7 +219,7 @@ const createRouter = () => new Router({
   scrollBehavior: () => ({
     y: 0
   }),
-  routes: constantRoutes
+  routes: constantRouterMap
 })
 
 const router = createRouter()
