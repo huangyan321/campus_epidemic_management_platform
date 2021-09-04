@@ -112,7 +112,7 @@ const actions = {
         commit('SET_NAME', username)
         commit('SET_CLASSES', classes)
         commit('SET_AVATAR', head)
-        resolve(data)
+        resolve(data.result)
       }).catch(error => {
         reject(error)
       })
@@ -125,6 +125,7 @@ const actions = {
     state
   }) {
     return new Promise((resolve, reject) => {
+      window.sessionStorage.clear();
       removeToken() // must remove  token  first
       resetRouter()
       commit('RESET_STATE')
