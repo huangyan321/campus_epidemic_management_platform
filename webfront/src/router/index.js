@@ -56,25 +56,33 @@ export const constantRoutes = [{
       }
     }]
   },
-
   {
     path: '/user',
     component: Layout,
-    redirect: '/user/userlist',
+    redirect: '/user/student',
     name: 'user',
     meta: {
       title: '用户管理',
       icon: 'el-icon-s-help'
     },
     children: [{
-      path: 'userList',
-      name: 'UserList',
-      component: () => import('@/views/user/'),
+      path: 'student',
+      name: 'student',
+      component: () => import('@/views/userManage/student/index'),
       meta: {
-        title: '用户列表',
+        title: '学生列表',
         icon: 'table'
       }
-    }, ]
+    },
+  {
+    path: 'teacher',
+    name: 'teacher',
+    component: () => import('@/views/userManage/teacher/index'),
+    meta: {
+      title: '教师列表',
+      icon: 'table'
+    }
+  }, ]
   },
 
   {
@@ -144,20 +152,20 @@ export const constantRoutes = [{
     }]
   },
   {
-    path: '/reports',
+    path: '/classManage',
     component: Layout,
-    redirect: '/reports/report',
+    redirect: '/classManage/addClass',
     name: 'report',
     meta: {
-      title: '数据报表',
+      title: '班级管理',
       icon: 'el-icon-s-help'
     },
     children: [{
-      path: 'report',
-      name: 'report',
-      component: () => import('@/views/report'),
+      path: 'addClass',
+      name: 'addClass',
+      component: () => import('@/views/addClass'),
       meta: {
-        title: '数据报表',
+        title: '添加班级',
         icon: 'form'
       }
     }, ]
