@@ -7,16 +7,17 @@ import 'lib-flexible'
 import App from './App'
 import lodash from 'lodash'
 import store from './store'
+import '@/permission' // permission control
 import router from './router'
 import '@/icons' // icon
-import '@/permission' // permission control
 Vue.prototype.$store = store
 // 在页面刷新时将store中的数据保存到sessionStorage中
 window.addEventListener("beforeunload",() => {
   const userInfo = {
     ...store.state.user
   }
-  window.sessionStorage.setItem("USER_INFO",JSON.stringify(userInfo));
+  window.sessionStorage.setItem("USER_INFO", JSON.stringify(userInfo));
+
 })
 Vue.prototype.$_ = lodash
 // 在页面刷新后获取sessionStorage中的token
