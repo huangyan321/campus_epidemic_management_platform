@@ -5,6 +5,17 @@
       <!-- 搜索框区域 -->
       <div style="margin-top: 15px" />
       <el-row :gutter="20">
+        <el-col :span="3">
+          <el-select v-model="searchInfo.columnData" placeholder="请选择搜索列">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-col>
         <el-col :span="4"
           ><el-input
             v-model="searchInfo.inputText"
@@ -17,17 +28,7 @@
               @click="getUsersByTypeAndChar(1)"
             /> </el-input
         ></el-col>
-        <el-col :span="6">
-          <el-select v-model="searchInfo.type" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
-        </el-col>
+
         <el-col :span="2"
           ><el-button type="primary" @click="addDialogVisible = true"
             >添加用户</el-button
@@ -128,27 +129,27 @@ export default {
     return {
       searchInfo: {
         columnData: "username",
-        type: "",
+        type: "3",
         inputText: "",
         currPage: 1,
         pageSize: 10,
       },
       options: [
         {
-          value: "0",
-          label: "全部",
+          value: "username",
+          label: "用户",
         },
         {
-          value: "1",
-          label: "管理员",
+          value: "sex",
+          label: "性别",
         },
         {
-          value: "2",
-          label: "学生",
+          value: "address",
+          label: "住址",
         },
         {
-          value: "3",
-          label: "教师",
+          value: "classes",
+          label: "班级",
         },
       ],
       usersList: [],
