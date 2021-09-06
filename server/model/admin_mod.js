@@ -109,9 +109,9 @@ module.exports = class Admin_mod extends require('./model') {
     })
   }
   static noticeDelMod(n_id) {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
       let sql = "delete from notice where n_id=?"
-      this.query(sql,this.formatParams(n_id)).then(res => {
+      this.query(sql, this.formatParams(n_id)).then(res => {
         resolve("删除成功")
       }).catch(err => {
         reject(err)
@@ -167,6 +167,48 @@ module.exports = class Admin_mod extends require('./model') {
       this.query(sql).then(res => {
         resolve("审批完成")
       }).then(err => {
+        reject(err)
+      })
+    })
+  }
+  /**
+   * 获取当前用户请假审批单
+   * @param {Number} u_id 
+   * @param {Number} currPage 
+   * @param {Number} pageSize 
+   * @returns 
+   */
+  static getuserLeaveMod(u_id, currPage, pageSize) {
+    return new Promise((resolve, reject) => {
+      currPage = Number(currPage);
+      pageSize = Number(pageSize);
+      currPage = Number((currPage - 1) * pageSize);
+      const sql = "select * from leavetable where u_id=" + u_id + " order by createtime desc LIMIT ?,?";
+      console.log(sql);
+      TODO
+      this.query(sql, this.formatParams(currPage, pageSize)).then(res => {
+        resolve(res)
+      }).catch(err => {
+        res.send({
+          meta: {
+            status: 400,
+            msg: err
+          }
+        })
+      })
+    })
+  }
+  /**
+   * 获取当前用户请假审批单总数
+   * @param {Number} u_id 
+   * @returns 
+   */
+  static getuserLeaveTotal(u_id) {
+    return new Promise((resolve, reject) => {
+      const sql = "select * from leavetable where u_id=?";
+      this.query(sql, this.formatParams(u_id)).then(res => {
+        resolve(res.length)
+      }).catch(err => {
         reject(err)
       })
     })

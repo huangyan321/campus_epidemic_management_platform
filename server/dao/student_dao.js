@@ -21,7 +21,7 @@ module.exports = class Student_dao extends require("../model/student_mod") {
 		})
 	}
 	static async getNoticeRead(req, res) {
-		let tokenData = await jwt.verifysync(req.query.token, global.globalkey)
+		let tokenData = await jwt.verifysync(req.headers.authorization, global.globalkey)
 		let u_id = tokenData.id
 		let data = await this.getNoticeReadMod(u_id)
 		res.send({
@@ -39,7 +39,7 @@ module.exports = class Student_dao extends require("../model/student_mod") {
 	 */
 	static async toUnread(req, res) {
 		let n_id = req.query.n_id;
-		let tokenData = await jwt.verifysync(req.query.token, global.globalkey)
+		let tokenData = await jwt.verifysync(req.headers.authorization, global.globalkey)
 		let u_id = tokenData.id;
 		let data = await this.toUnreadMod(n_id, u_id)
 		res.send({
@@ -54,7 +54,7 @@ module.exports = class Student_dao extends require("../model/student_mod") {
 	 */
 	static async toRead(req, res) {
 		let n_id = req.query.n_id;
-		let tokenData = await jwt.verifysync(req.query.token, global.globalkey)
+		let tokenData = await jwt.verifysync(req.headers.authorization, global.globalkey)
 		let u_id = tokenData.id;
 		let data = await this.toReadMod(n_id, u_id)
 		res.send({

@@ -41,13 +41,13 @@ export function getLeave(params) {
   })
 }
 //获取该用户请假审批与数量(分页) 
-// export function getuserLeave(params) {
-//   return request({
-//     url: '/admin/getuserLeave',
-//     method: 'get',
-//     params
-//   })
-// }
+export function getuserLeave(params) {
+  return request({
+    url: '/admin/getuserLeave',
+    method: 'get',
+    params
+  })
+}
 //当前请假单审批(修改审批状态) 
 export function upLeaveState(params) {
   return request({
