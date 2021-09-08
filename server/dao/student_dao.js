@@ -163,9 +163,12 @@ module.exports = class Student_dao extends require("../model/student_mod") {
 			}
 		})
 	}
+  /**
+   * 请假申请
+   */
 	static async setLeave(req,res) {
 		const body = req.body;
-		const tokenData = await jwt.verifysync(body.token, global.globalkey);
+		const tokenData = await jwt.verifysync(req.headers.authorization, global.globalkey);
 		const {id,classes} = tokenData;
 		console.log(tokenData);
 		const {reason,leavetype,starttime,endtime} = body

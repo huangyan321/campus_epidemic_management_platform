@@ -184,8 +184,6 @@ module.exports = class Admin_mod extends require('./model') {
       pageSize = Number(pageSize);
       currPage = Number((currPage - 1) * pageSize);
       const sql = "select * from leavetable where u_id=" + u_id + " order by createtime desc LIMIT ?,?";
-      console.log(sql);
-      TODO
       this.query(sql, this.formatParams(currPage, pageSize)).then(res => {
         resolve(res)
       }).catch(err => {

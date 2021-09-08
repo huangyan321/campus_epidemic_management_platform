@@ -213,6 +213,16 @@ module.exports = class Student_mod extends require('./model') {
 			})
 		})
 	}
+  /**
+   * 请假申请
+   * @param {number} u_id 
+   * @param {string} classes 
+   * @param {string} reason 
+   * @param {string} leavetype 
+   * @param {string} starttime 
+   * @param {string} endtime 
+   * @returns 
+   */
 	static setLeaveMod(u_id, classes, reason, leavetype, starttime, endtime) {
 		return new Promise((resolve, reject) => {
 			let createtime = getDate19()
