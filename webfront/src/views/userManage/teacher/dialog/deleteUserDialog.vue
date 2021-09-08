@@ -37,7 +37,6 @@ export default {
   methods: {
   // 确定删除用户
     async sureDeleteUser() {
-			console.log(this.deleteUserId);
       const res = await delUserData({
 				id:this.deleteUserId
 			});

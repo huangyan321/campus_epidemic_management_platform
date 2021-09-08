@@ -47,7 +47,6 @@ const mutations = {
     state.classes = classes.split(';')
   },
   SET_CLASSES1: (state, classes) => {
-    console.log(classes);
     state.classes = classes
   }
 }
@@ -72,7 +71,6 @@ const actions = {
           const {
             data
           } = res;
-          console.log(data);
           commit('SET_TOKEN', data.token);
           commit('SET_ID', data.id);
           setToken(data.token);
