@@ -118,7 +118,7 @@ export default {
           },
         ],
         classes: [
-          { required: true, message: "至少选择一个班级", trigger: "change" },
+          { required: true, message: "至少选择一个班级", trigger: "blur" },
         ],
       },
     };
@@ -209,7 +209,7 @@ export default {
 }
 .box-card {
   width: 60%;
-  min-height: 12rem;
+  min-height: 10rem;
   margin: 0.5rem auto;
 }
 </style>
