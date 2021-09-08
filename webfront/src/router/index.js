@@ -35,13 +35,6 @@ export const constantRouterMap = [{
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
-
   {
     path: '/',
     component: Layout,
@@ -168,7 +161,7 @@ export const asyncRouterMap = [{
     path: '/admin',
     component: Layout,
     redirect: '/admin/getLeave',
-    name: 'goodsManage',
+    name: 'admin',
     meta: {
       title: '教师管理',
       icon: 'el-icon-s-help',
@@ -189,7 +182,7 @@ export const asyncRouterMap = [{
     path: '/noticeManage',
     component: Layout,
     redirect: '/noticeManage/release',
-    name: 'goodsManage',
+    name: 'noticeManage',
     meta: {
       title: '通知管理',
       icon: 'el-icon-s-help',
@@ -208,10 +201,15 @@ export const asyncRouterMap = [{
   },
   // 404 page must be placed at the end !!!
   {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
+  {
     path: '*',
     redirect: '/404',
     hidden: true
-  }
+  },
 ]
 
 const createRouter = () => new Router({
