@@ -1,5 +1,5 @@
 {
-  "name": "shop-admin",
+  "name": "Campus_epidemic_management_platform",
   "version": "4.4.0",
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
   "author": "Pan <panfree23@gmail.com>",
@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "0.18.1",
     "core-js": "3.6.5",
+    "default-passive-events": "^2.0.0",
     "echarts": "^5.1.2",
     "element-ui": "2.13.2",
     "js-cookie": "2.2.0",
@@ -48,6 +49,7 @@
     "gulp-ssh": "^0.7.0",
     "html-webpack-plugin": "3.2.0",
     "mockjs": "1.0.1-beta3",
+    "px2rem-loader": "^0.1.9",
     "runjs": "4.3.2",
     "sass": "1.26.8",
     "sass-loader": "8.0.2",
