@@ -35,12 +35,20 @@
 </template>
 <script>
 import { getNotice } from "@/api/student";
+import { socket } from '@/utils/socket'
+
 export default {
   name: "index",
   created() {
     this.getNotice()
   },
-  mounted() {},
+  mounted() {
+    let _that = this
+    socket.init();
+    socket.websock.onmessage = function (e) {
+      _that.receive(e)
+    }
+  },
 
   data() {
     return {
@@ -73,6 +81,16 @@ export default {
       this.queryInfo.currPage = currPage;
       this.getNotice();
     },
+    receive(message){
+    var params = JSON.parse(message.data);
+    if (params.type !== "heart") {
+      console.log('收到服务器内容11：', params)
+    } else {
+      console.log("心跳")
+      return false
+    }
+    TODO
+  },
   },
 };
 </script>

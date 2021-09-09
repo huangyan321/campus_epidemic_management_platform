@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('w-demo:server');
 var http = require('http');
+const WebSocket = require('ws');
+
 
 /**
  * Get port from environment and store in Express.
@@ -21,6 +23,18 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+/**
+ * Create ws
+ */
+const WebSocketServer = WebSocket.Server;
+var wss = new WebSocketServer({server,path: "/ws"})
+wss.on('connection',(ws) => {
+  console.log("webSocket connected");
+  ws.on('message',(msg) => {
+    ws.send(msg)
+  })
+  TODO
+})
 /**
  * Listen on provided port, on all network interfaces.
  */

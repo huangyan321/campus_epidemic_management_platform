@@ -10,6 +10,7 @@ import {
   setToken,
   removeToken,
   getRoleId,
+  setRoleId
 } from '@/utils/auth'
 import {
   resetRouter
@@ -74,6 +75,7 @@ const actions = {
           commit('SET_TOKEN', data.token);
           commit('SET_ID', data.id);
           setToken(data.token);
+          setRoleId(data.id)
           resolve()
         } else {
           Message({

@@ -28,6 +28,7 @@ if (userInfo) {
   store.commit('user/SET_TOKEN', user.token);
   store.commit('user/SET_NAME', user.name);
   store.commit('user/SET_AVATAR', user.avatar);
+  store.commit('user/SET_ID', user.roleId);
   store.commit('user/SET_CLASSES1', user.classes);
 }
 Vue.config.productionTip = false;
