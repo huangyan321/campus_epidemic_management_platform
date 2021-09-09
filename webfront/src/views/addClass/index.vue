@@ -35,7 +35,7 @@ export default {
       socket.reconnect();
     },
     receive(message) {
-     var msg = message.data.
+     var msg = message
      console.log(msg);
       TODO
     },
