@@ -82,14 +82,15 @@ export default {
       this.getNotice();
     },
     receive(message){
+      console.log(message);
     var params = JSON.parse(message.data);
-    if (params.type !== "heart") {
-      console.log('收到服务器内容11：', params)
-    } else {
-      console.log("心跳")
-      return false
-    }
-    TODO
+      console.log(params);
+    // if (params.type !== "heart") {
+    //   console.log('收到服务器内容11：', params.data)
+    // } else {
+    //   console.log("心跳")
+    //   return false
+    // }
   },
   },
 };

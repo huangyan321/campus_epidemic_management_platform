@@ -88,12 +88,15 @@
 import { getNotice } from "@/api/student";
 import { announce, noticeDel } from "@/api/admin";
 import { mapGetters } from "vuex";
+import { socket } from "@/utils/socket";
 export default {
   name: "index",
   created() {
     this.getNotice();
   },
-  mounted() {},
+  mounted() {
+    socket.init();
+  },
 
   data() {
     return {
@@ -153,6 +156,13 @@ export default {
           ? (() => {
               this.$notify.success(res.meta.msg);
               this.getNotice();
+              socket.send(
+                {
+                  type: "notice",
+                  msg: "通知更新",
+                  from: socket.u_id,
+                }
+              );
             })()
           : this.$notify.error(res.meta.msg);
       });

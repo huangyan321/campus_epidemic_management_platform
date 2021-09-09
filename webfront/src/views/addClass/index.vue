@@ -35,9 +35,14 @@ export default {
       socket.reconnect();
     },
     receive(message) {
-     var msg = message
-     console.log(msg);
-      TODO
+      var params =JSON.parse(message.data);
+      // console.log(message);
+      if (params.type !== "heart") {
+        console.log("收到服务器内容11：", params);
+      } else {
+        console.log("心跳");
+        return false;
+      }
     },
   },
   beforeDestroy() {

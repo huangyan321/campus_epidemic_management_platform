@@ -15,7 +15,7 @@ var socket = {
   // 固定的WebSocket地址：此处是从env文件中读取socket地址，可以自行从其他config文件中读取或直接写死
   // 如需使用动态WebSocket地址，请自行作ajax通讯后扩展
   // ws_url: process.env.VUE_APP_API_SOCKET_URL,
-  ws_url: "ws://127.0.0.1:3000/ws",
+  ws_url: "ws://127.0.0.1:3000",
   // 开启标识
   socket_open: false,
   // 心跳timer
@@ -46,7 +46,10 @@ var socket = {
       throw new Error("u_id  is undefined");
     }
     // 已经创建过连接不再重复创建
+    if (!socket.websock) {
     socket.websock = new WebSocket(socket.ws_url)
+
+    }
     // socket.websock.onmessage = function (e) {
     //   socket.receive(e)
     // }
@@ -139,12 +142,11 @@ var socket = {
     if (socket.hearbeat_timer) clearTimeout(socket.hearbeat_timer)
     socket.hearbeat_timer = setTimeout(() => {
       if (socket.socket_open) {
-        socket.send(JSON.stringify({
+        socket.send({
           type: 'heart',
           msg: '心跳循环',
-          macList: 1,
           from: socket.u_id
-        }))
+        })
         socket.heartbeat();
       } else {
         console.log("连接断开");
