@@ -7,7 +7,7 @@
       <div class="text item">
         <!-- 用户列表区域 -->
         <template>
-          <el-table :data="noticeList"  stripe border >
+          <el-table :data="noticeList" stripe border>
             <el-table-column prop="n_id" label="序列号" sortable />
             <el-table-column prop="title" label="主题" />
             <el-table-column prop="type" label="状态" />
@@ -35,21 +35,31 @@
 </template>
 <script>
 import { getNotice } from "@/api/student";
-import { socket } from '@/utils/socket'
-
+import { mapGetters } from "vuex";
 export default {
   name: "index",
   created() {
-    this.getNotice()
+    this.getNotice();
   },
   mounted() {
-    let _that = this
-    socket.init();
-    socket.websock.onmessage = function (e) {
-      _that.receive(e)
-    }
+    let that = this;
+    this.socket ? "" : this.$store.dispatch("socket/socketInit");
+    this.socket.wsInit();
+    this.socket.webSock.onmessage = async (e) => {
+      const { classes, data } = await that.socket.wsReceive(e);
+      data.type === "notice"
+        ? classes.includes(that.classes[0])
+          ? (() => {
+              that.$notify.success(data.msg);
+              that.getNotice();
+            })()
+          : ""
+        : "";
+    };
   },
-
+  computed: {
+    ...mapGetters(["socket", "classes"]),
+  },
   data() {
     return {
       queryInfo: {
@@ -57,21 +67,21 @@ export default {
         pageSize: 5,
       },
       total: 0,
-      noticeList: null
+      noticeList: null,
     };
   },
   methods: {
     async getNotice() {
       const res = await getNotice(this.queryInfo);
-      res.meta.status === 200 ? 
-      (() => {
-        res.data.data.forEach(item => {
-          item.type = "未读"
-        })
-        this.total = res.data.total
-        this.noticeList = res.data.data
-      })()
-      : this.$notify.error(res.meta.msg);
+      res.meta.status === 200
+        ? (() => {
+            res.data.data.forEach((item) => {
+              item.type = "未读";
+            });
+            this.total = res.data.total;
+            this.noticeList = res.data.data;
+          })()
+        : this.$notify.error(res.meta.msg);
     },
     handleSizeChange(pageSize) {
       this.queryInfo.pageSize = pageSize;
@@ -81,17 +91,6 @@ export default {
       this.queryInfo.currPage = currPage;
       this.getNotice();
     },
-    receive(message){
-      console.log(message);
-    var params = JSON.parse(message.data);
-      console.log(params);
-    // if (params.type !== "heart") {
-    //   console.log('收到服务器内容11：', params.data)
-    // } else {
-    //   console.log("心跳")
-    //   return false
-    // }
-  },
   },
 };
 </script>

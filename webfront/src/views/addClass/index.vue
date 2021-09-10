@@ -4,49 +4,46 @@
     <button @click="send">发消息</button>
     <button @click="close">断开</button>
     <button @click="reconnect">重连</button>
+    <el-input v-model="res"></el-input>
   </div>
 </template>
 
 <script>
-import { socket } from "@/utils/socket";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       msg: "",
+      res: null
     };
   },
   mounted() {
-    let _that = this;
-    socket.init();
-    socket.websock.onmessage = function (e) {
-      _that.receive(e);
-    };
+    this.socket
+      ? ""
+      : (() => {
+          this.$store.dispatch("socket/socketInit");
+          this.socket.wsInit();
+        })();
+      this.socket.webSock.onmessage = async (e) => {
+       const {msg:res} = await this.socket.wsReceive(e)
+       this.res = res
+      }
+  },
+  computed: {
+    ...mapGetters(["classes", "socket"]),
   },
   methods: {
     send() {
-      socket.send({ test: this.msg }, () => {
-        console.log("回调");
-      });
+      this.socket.wsSend(this.msg)
     },
     close() {
-      socket.close();
+      this.socket.wsClose()
     },
     reconnect() {
-      socket.reconnect();
+      this.socket.wsReconnect()
     },
-    receive(message) {
-      var params =JSON.parse(message.data);
-      // console.log(message);
-      if (params.type !== "heart") {
-        console.log("收到服务器内容11：", params);
-      } else {
-        console.log("心跳");
-        return false;
-      }
-    },
-  },
-  beforeDestroy() {
-    this.close();
+    
   },
 };
 </script>

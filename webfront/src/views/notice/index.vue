@@ -88,14 +88,14 @@
 import { getNotice } from "@/api/student";
 import { announce, noticeDel } from "@/api/admin";
 import { mapGetters } from "vuex";
-import { socket } from "@/utils/socket";
 export default {
   name: "index",
   created() {
     this.getNotice();
   },
   mounted() {
-    socket.init();
+    this.socket ? "" : this.$store.dispatch("socket/socketInit");
+    this.socket.wsInit();
   },
 
   data() {
@@ -127,7 +127,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["classes"]),
+    ...mapGetters(["classes", "socket"]),
   },
   methods: {
     async getNotice() {
@@ -156,13 +156,10 @@ export default {
           ? (() => {
               this.$notify.success(res.meta.msg);
               this.getNotice();
-              socket.send(
-                {
-                  type: "notice",
-                  msg: "通知更新",
-                  from: socket.u_id,
-                }
-              );
+              this.socket.wsSend({
+                type: "notice",
+                msg: "有新的通知",
+              });
             })()
           : this.$notify.error(res.meta.msg);
       });
