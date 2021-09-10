@@ -33,8 +33,10 @@ wss.on('connection',(ws,data) => {
   console.log("webSocket connected");
   //isBinary:是否发送二进制数据
   ws.on('message', (data, isBinary) => {
-    ws.send(data, {
-      binary: isBinary
+    wss.clients.forEach(client => {
+      client.send(data, {
+        binary: isBinary
+      })
     })
   },)
 })
