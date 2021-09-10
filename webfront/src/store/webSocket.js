@@ -14,7 +14,7 @@ export default class Socket {
     //心跳timer
     this.hearBeat_timer = null;
     //心跳间隔
-    this.hearBeat_interval = 5000;
+    this.hearBeat_interval = 60000;
     //用户id
     this.u_id = store.state.user.roleId;
     //是否重连
@@ -52,7 +52,7 @@ export default class Socket {
             return
           }
           this.reconnect_current++;
-          this.reconnect();
+          this.wsReconnect();
         }, this.reconnect_interval)
       }
     }
@@ -94,7 +94,6 @@ export default class Socket {
   }
   wsReceive = (msg) => {
     return new Promise((resolve, reject) => {
-      console.log(msg.data);
       const params = JSON.parse(msg.data);
       resolve(params)
     })

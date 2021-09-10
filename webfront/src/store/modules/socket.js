@@ -8,7 +8,6 @@ const state = {
 const mutations = {
   contentSocket(state) {
     state.ws = new Socket();
-    console.log(state.ws);
   }
 }
 
