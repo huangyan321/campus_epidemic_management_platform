@@ -12,7 +12,7 @@ var app = express();
 //跨域配置
 app.all("*", function (req, res, next) {
   //设置允许跨域的域名，*代表允许任意域名跨域
-  
+
   res.header("Access-Control-Allow-Origin", "*");
   //允许的header类型
   res.header("Access-Control-Allow-Headers", "Content-Type,Access-Token,Appid,Secret,Authorization");
