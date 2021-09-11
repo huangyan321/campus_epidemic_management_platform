@@ -8,7 +8,7 @@ export default class Socket {
     //websocket 实例
     this.webSock = null;
     //ws_url
-    this.ws_url = "ws://127.0.0.1:3000";
+    this.ws_url = "ws://121.196.101.73:3000";
     //开启标识
     this.socket_open = false;
     //心跳timer
