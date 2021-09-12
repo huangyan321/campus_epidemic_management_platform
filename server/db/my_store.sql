@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 12/09/2021 13:44:40
+ Date: 12/09/2021 13:53:27
 */
 
 SET NAMES utf8mb4;
@@ -188,7 +188,6 @@ INSERT INTO `usertable` VALUES (107, NULL, '宫本武藏', '123456', 'cat.jpg', 
 INSERT INTO `usertable` VALUES (108, NULL, '柯南', '123456', 'cat.jpg', NULL, '福建漳州', '男', '2021-08-30 23:02:08', '2021-08-30 23:01:52', '高二四班', 2);
 INSERT INTO `usertable` VALUES (109, NULL, '喜羊羊', '123456', 'cat.jpg', NULL, '福建泉州', '女', '2021-08-30 23:02:12', '2021-08-30 23:01:55', '高二三班', 2);
 INSERT INTO `usertable` VALUES (110, NULL, '韩信', '123456', 'cat.jpg', NULL, '福建福州', '女', '2021-08-12 23:02:15', '2021-08-30 23:01:57', '高二二班', 3);
-INSERT INTO `usertable` VALUES (111, NULL, '谢渟渟', '520520', 'cat.jpg', NULL, '福建福州', '女', '2021-08-30 23:51:58', '2021-08-30 23:52:00', '幼儿园一班', 1);
 INSERT INTO `usertable` VALUES (112, NULL, '典韦', '123456', 'cat.jpg', NULL, '福建福州', '女', '2021-08-31 10:28:38', '2021-08-31 10:28:43', '高三九班', 1);
 INSERT INTO `usertable` VALUES (113, NULL, '李白', '123456', 'cat.jpg', NULL, '福建福州', '女', '2021-08-31 10:28:51', '2021-08-31 10:28:45', '高二九班', 2);
 INSERT INTO `usertable` VALUES (114, NULL, '张飞', '123456', 'cat.jpg', NULL, '福建福州', '女', '2021-08-31 10:28:54', '2021-08-31 10:28:48', '高一七班', 2);
@@ -203,6 +202,6 @@ INSERT INTO `usertable` VALUES (127, NULL, '孙悟空', '123456', 'cat.jpg', NUL
 INSERT INTO `usertable` VALUES (128, NULL, '夏洛特', '123456', 'cat.jpg', NULL, '福建龙岩', '男', '2021-08-31 10:29:29', '2021-08-31 10:29:42', '高二五班', 3);
 INSERT INTO `usertable` VALUES (129, NULL, '夏侯惇', '123456', 'cat.jpg', NULL, '福建福州', '男', '2021-08-31 10:29:33', '2021-08-31 10:29:40', '高二四班', 2);
 INSERT INTO `usertable` VALUES (130, NULL, '武则天', '123456', 'cat.jpg', NULL, '福建龙岩', '男', '2021-08-31 10:29:36', '2021-08-31 10:29:38', '高二三班', 1);
-INSERT INTO `usertable` VALUES (131, NULL, '谢渟渟', '123456', 'cat.jpg', NULL, '福建南平', '女', '2021-09-12 13:42:44', '2021-09-12 13:42:47', '高三9班', 2);
+INSERT INTO `usertable` VALUES (131, NULL, '谢渟渟', '520520', 'cat.jpg', NULL, '福建南平', '女', '2021-09-12 13:42:44', '2021-09-12 13:42:47', '高三9班', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
