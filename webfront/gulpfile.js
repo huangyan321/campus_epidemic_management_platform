@@ -27,7 +27,7 @@ const config = {
     // 删除现有文件
     `rm -rf ${remotePath}`,
     `nginx -s reload`,
-    `pm2 restart 0`
+    `pm2 restart 2`
   ]
 }
 const gulpSSH = new GulpSSH({
