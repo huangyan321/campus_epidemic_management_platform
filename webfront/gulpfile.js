@@ -8,7 +8,7 @@ const {
 // const isProduct = APP_ENV === 'production';
 
 // 需要上传到服务器的路径
-const remotePath = `/root/git/${npm_package_name}/`
+const remotePath = `/root/git/CEMP/campus_epidemic_management_platform/server/views/dist`
 const config = {
   // ssh: { // 正式
   //   host: isProduct ? '' : '192.168.31.227',
@@ -27,7 +27,7 @@ const config = {
     // 删除现有文件
     `rm -rf ${remotePath}`,
     `nginx -s reload`,
-    `pm2 restart 0`
+    `pm2 restart 2`
   ]
 }
 const gulpSSH = new GulpSSH({

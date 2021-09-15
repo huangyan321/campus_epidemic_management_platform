@@ -36,6 +36,7 @@ module.exports = {
       warnings: false, 
       errors: true
     },
+    public: '192.168.201.1:8080',
     // proxy : {
       // '/api': {
       //   target: 'http://127.0.0.1:3000',
