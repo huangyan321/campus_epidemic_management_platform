@@ -1,5 +1,11 @@
 <template>
   <div class="login-container">
+    <figure class="container">
+        <div class="sun"></div>
+        <div class="earth">
+          <div class="moon"></div>
+        </div>
+      </figure>
     <el-form
       ref="loginForm"
       :model="loginForm"
@@ -68,12 +74,13 @@
           >重置</el-button
         >
       </el-row>
-
+     
       <div class="tips">
         <span style="margin-right: 20px">username: admin</span>
         <span> password: 123456</span>
       </div>
     </el-form>
+     
     <div class="footer">
       <a href="http://beian.miit.gov.cn/" target="_blank" style="color: #a6a9ad"
         >闽ICP备2021008516号-1</a
@@ -153,7 +160,6 @@ export default {
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
-              
               // this.$router.push({ path: this.redirect || "/" });
               this.$router.push("/");
               this.loading = false;
@@ -178,7 +184,7 @@ export default {
 $bg: #283443;
 $light_gray: #fff;
 $cursor: #fff;
-
+@import url("~@/styles/simulation.css");
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
     color: $cursor;
